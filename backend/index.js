@@ -4,7 +4,9 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+// app.use(cors({ credentials: true, origin: "https://superapp.acruxtek.net" }));
+app.use(cors({ credentials: true, origin: "http://localhost:3001" }));
 
 app.get("/guest-token", getGuestToken);
 
@@ -39,7 +41,7 @@ async function fetchAccessToken() {
   try {
     const body = {
       username: "admin",
-      password: "admin931",
+      password: "admin",
       provider: "db",
       refresh: true,
     };
@@ -117,7 +119,8 @@ async function fetchGuestToken() {
       resources: [
         {
           type: "dashboard",
-          id: "a2bf6189-3c5e-446f-bb93-555bfba93d94",
+          //id: "4102a7b6-e3b6-40cb-a3c9-8796b5cc70db",
+          id: "b374237b-7e5e-4d33-8d3b-7544b0e62fb6",
         },
       ],
       rls: [],
@@ -129,7 +132,7 @@ async function fetchGuestToken() {
     };
 
     const bodyString = JSON.stringify(body);
-
+    console.log("fetching guest token I");
     const response = await fetch(
       "https://superset.acruxtek.net/api/v1/security/guest_token/",
       {
@@ -144,6 +147,7 @@ async function fetchGuestToken() {
         },
       }
     );
+    console.log("fetching guest token II");
 
     const jsonResponse = await response.json();
 
