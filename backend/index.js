@@ -41,13 +41,13 @@ async function fetchAccessToken() {
   try {
     const body = {
       username: "admin",
-      password: "admin",
+      password: "acrux931",
       provider: "db",
       refresh: true,
     };
 
     const response = await fetch(
-      "https://superset.acruxtek.net/api/v1/security/login",
+      "https://ss.acruxtek.net/api/v1/security/login",
       {
         method: "POST",
         body: JSON.stringify(body),
